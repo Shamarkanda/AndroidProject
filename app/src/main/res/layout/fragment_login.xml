@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_LoginFragment_texts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+        <EditText
+            android:id="@+id/editText_LoginFragment_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:hint="User"
+            android:textColorHint="@android:color/holo_blue_dark"/>
+
+        <EditText
+            android:id="@+id/editText_LoginFragment_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_below="@+id/editText_LoginFragment_user"
+            android:hint="Password"
+            android:textColorHint="@android:color/holo_blue_dark"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/linearLayout_LoginFragment_texts"
+        android:layout_alignLeft="@id/linearLayout_LoginFragment_texts">
+        <Button
+            android:id="@+id/button_LoginFragment_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="Sign In"/>
+
+        <Button
+            android:id="@+id/button_LoginFragment_clean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clean"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Bienvenido"
+        android:id="@+id/textView"
+        android:layout_above="@id/linearLayout_LoginFragment_texts"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bienvenido"
+        android:id="@+id/textView2"
+        android:layout_above="@id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Bienvenido"
+        android:id="@+id/textView3"
+        android:layout_above="@id/textView2"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
