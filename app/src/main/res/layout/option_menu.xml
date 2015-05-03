@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView_MenuFragment_imageOption"
+        android:src="@drawable/black406"
+        android:layout_width="32dp"
+        android:layout_height="32dp" />
+    <TextView
+        android:id="@+id/textView_MenuFragment_textOption"
+        android:text="CONFIGURACION"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+</LinearLayout>

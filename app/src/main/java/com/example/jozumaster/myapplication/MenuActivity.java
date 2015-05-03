@@ -22,6 +22,6 @@ public class MenuActivity extends Activity implements OnChange {
 
     @Override
     public void change(View view){
-        String text = ((TextView)view).getText().toString();
+
     }
 }
