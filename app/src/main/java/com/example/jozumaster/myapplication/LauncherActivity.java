@@ -13,7 +13,7 @@ public class LauncherActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_launcher);
         new Opacity().execute();
     }
 
@@ -29,7 +29,7 @@ public class LauncherActivity extends Activity{
         protected Boolean doInBackground(Void... params){
             for(int i = 0; i < 255; i++){
                 try{
-                    Thread.sleep(1);
+                    Thread.sleep(0);
                 }catch(InterruptedException e){
                     cancel(true);
                     e.printStackTrace();
