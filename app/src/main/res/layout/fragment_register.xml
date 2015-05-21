@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/white">
+
+    <EditText
+        android:id="@+id/editText_RegisterFragment_email"
+        android:hint=" Email"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:layout_centerHorizontal="true"
+        android:inputType="textEmailAddress"
+        android:drawableLeft="@android:drawable/ic_dialog_email" />
+
+    <EditText
+        android:id="@+id/editText_RegisterFragment_username"
+        android:hint=" Usuario"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_RegisterFragment_email"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPersonName"
+        android:drawableLeft="@android:drawable/ic_menu_myplaces"/>
+
+    <EditText
+        android:id="@+id/editText_RegisterFragment_password"
+        android:hint=" Contraseña"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_RegisterFragment_username"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:drawableLeft="@android:drawable/ic_lock_idle_lock"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView_RegisterFragment_provinces"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:hint="Provincia"
+        android:layout_below="@id/editText_RegisterFragment_password"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/editText_RegisterFragment_date"
+        android:hint="Fecha de nacimiento"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:focusable="false"
+        android:layout_below="@id/autoCompleteTextView_RegisterFragment_provinces"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/editText_RegisterFragment_date"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <CheckBox
+            android:id="@+id/checkBox_RegisterFragment_man"
+            android:text="Hombre"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/checkBox_RegisterFragment_woman"
+            android:text="Mujer"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:checked="false" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton_RegisterFragment_register"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/editText_RegisterFragment_date"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

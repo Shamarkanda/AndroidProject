@@ -7,12 +7,4 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_red_dark"
     tools:context=".LoginActivity">
-
-    <fragment
-        android:id="@+id/fragment_ActivityLogin_login"
-        android:name="com.example.jozumaster.myapplication.LoginFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        tools:layout="@layout/fragment_login"/>
 </FrameLayout>

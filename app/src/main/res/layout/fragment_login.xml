@@ -13,12 +13,12 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
         <EditText
-            android:id="@+id/editText_LoginFragment_user"
+            android:id="@+id/editText_LoginFragment_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:hint="User"
+            android:hint="Usuario"
             android:textColorHint="@android:color/holo_blue_dark"/>
 
         <EditText
@@ -27,8 +27,8 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:layout_below="@+id/editText_LoginFragment_user"
-            android:hint="Password"
+            android:layout_below="@+id/editText_LoginFragment_username"
+            android:hint="Contraseña"
             android:textColorHint="@android:color/holo_blue_dark"/>
     </LinearLayout>
 
@@ -37,19 +37,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/linearLayout_LoginFragment_texts"
-        android:layout_alignLeft="@id/linearLayout_LoginFragment_texts">
+        android:layout_alignLeft="@id/linearLayout_LoginFragment_texts"
+        android:id="@+id/linearLayout_LoginFragment_buttons">
         <Button
             android:id="@+id/button_LoginFragment_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
-            android:text="Sign In"/>
+            android:text="Entrar"/>
 
         <Button
             android:id="@+id/button_LoginFragment_clean"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clean"/>
+            android:text="Limpiar"/>
     </LinearLayout>
 
     <TextView
@@ -77,6 +78,14 @@
         android:text="Bienvenido"
         android:id="@+id/textView3"
         android:layout_above="@id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button_LoginFragment_register"
+        android:text="Registrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout_LoginFragment_buttons"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
