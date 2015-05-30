@@ -1,8 +1,10 @@
 package com.example.jozumaster.myapplication;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.MatrixCursor;
 import android.graphics.Matrix;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import android.widget.ListView;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by JozuMaster on 03/05/2015.
  */
@@ -22,7 +26,7 @@ public class MenuFragment extends ListFragment {
 
     private static OnChange activityListenerVoid = new OnChange() {
         @Override
-        public void change(View view){}
+        public void change(View view, Fragment fragment){}
     };
 
     private OnChange activityListener = MenuFragment.activityListenerVoid;
@@ -46,15 +50,16 @@ public class MenuFragment extends ListFragment {
     }
 
     @Override
-    public void onDetach(){
+    public void onDetach() {
         super.onDetach();
         this.activityListener = MenuFragment.activityListenerVoid;
     }
 
-    @Override
-    public void onListItemClick(ListView list, View view, int position, long id){
-        TextView textOption = (TextView) view.findViewById(R.id.textView_MenuFragment_textOption);
-        textOption.setTag(textOption.getText().toString());
-        activityListener.change(textOption);
+    public OnChange getActivityListener() {
+        return activityListener;
+    }
+
+    public void setActivityListener(OnChange activityListener) {
+        this.activityListener = activityListener;
     }
 }

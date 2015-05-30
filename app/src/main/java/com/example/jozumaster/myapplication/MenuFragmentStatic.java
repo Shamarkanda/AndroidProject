@@ -15,7 +15,7 @@ public class MenuFragmentStatic extends Fragment {
 
     private static OnChange activityListenerVoid = new OnChange() {
         @Override
-        public void change(View view){}
+        public void change(View view, Fragment fragment){}
     };
 
     private OnChange activityListener = MenuFragmentStatic.activityListenerVoid;
@@ -28,8 +28,8 @@ public class MenuFragmentStatic extends Fragment {
         ImageButton menu = (ImageButton) rootView.findViewById(R.id.imageButton_MenuFragmentStatic_buttonMenu);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                activityListener.change(v);
+            public void onClick(View view) {
+                activityListener.change(view, null);
             }
         });
         return rootView;

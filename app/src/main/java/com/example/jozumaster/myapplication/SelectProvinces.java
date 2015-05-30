@@ -47,7 +47,7 @@ public class SelectProvinces extends AsyncTask<Void, Void, Boolean> {
         try {
             HttpResponse httpResponse = this.httpClient.execute(this.httpPost);
             InputStream inputStream = httpResponse.getEntity().getContent();
-            this.result = Normalizer.normalize(this.convertStreamToString(inputStream), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").split("-");
+            this.result = Normalizer.normalize(this.convertStreamToString(inputStream), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").split("<br>");
             return true;
         } catch (IOException e) {
             e.printStackTrace();

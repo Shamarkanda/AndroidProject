@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imageView_VideogameFragment_videogameImage"
+            android:src="@drawable/logo_android"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/textView_VideogameFragment_nameVideogame"
+            android:text="NOMBRE VIDEOJUEGO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/imageView_VideogameFragment_videogameImage"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_VideogameFragment_genreContainer"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_below="@+id/textView_VideogameFragment_nameVideogame">
+
+            <TextView
+                android:id="@+id/textView_VideogameFragment_genreTitle"
+                android:text="Genero: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+            <TextView
+                android:id="@+id/textView_VideogameFragment_genre"
+                android:text="ACCION"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_VideogameFragment_playersContainer"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_VideogameFragment_nameVideogame"
+            android:layout_toEndOf="@+id/linearLayout_VideogameFragment_genreContainer"
+            android:layout_toRightOf="@+id/linearLayout_VideogameFragment_genreContainer"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp">
+
+            <TextView
+                android:id="@+id/textView_VideogameFragment_playersTitle"
+                android:text="Jugadores: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+            <TextView
+                android:id="@+id/textView_VideogameFragment_players"
+                android:text="JUGADORES"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_VideogameFragment_pegiContainer"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/linearLayout_VideogameFragment_genreContainer"
+            android:layout_alignLeft="@+id/linearLayout_VideogameFragment_genreContainer"
+            android:layout_alignStart="@+id/linearLayout_VideogameFragment_genreContainer">
+
+            <TextView
+                android:id="@+id/textView_VideogameFragment_pegiTitle"
+                android:text="PEGI: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+            <TextView
+                android:id="@+id/textView_VideogameFragment_pegi"
+                android:text="+18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_VideogameFragment_releaseDateContainer"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/linearLayout_VideogameFragment_playersContainer"
+            android:layout_alignLeft="@+id/linearLayout_VideogameFragment_playersContainer"
+            android:layout_alignStart="@+id/linearLayout_VideogameFragment_playersContainer">
+
+            <TextView
+                android:id="@+id/textView_VideogameFragment_releaseDateTitle"
+                android:text="Lanzamiento: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+            <TextView
+                android:id="@+id/textView_VideogameFragment_releaseDate"
+                android:text="2015"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_VideogameFragment_followButton"
+            android:text="SEGUIR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout_VideogameFragment_releaseDateContainer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp" />
+    </RelativeLayout>
+</ScrollView>

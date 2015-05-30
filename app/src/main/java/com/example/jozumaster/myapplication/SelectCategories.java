@@ -5,7 +5,10 @@ import android.database.MatrixCursor;
 import android.os.AsyncTask;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -29,7 +32,7 @@ public class SelectCategories extends AsyncTask<Void, Void, Boolean> {
     private final String urlString = "http://meetgame.es/MeetGame/SelectCategories.php";
     private Activity activity;
     private MenuFragment menuFragment;
-    private ArrayList<Categorie> objectCategorie;
+    private ArrayList<Categorie> objectCategories;
 
     public SelectCategories(Activity activity, MenuFragment menuFragment){
         this.activity = activity;
@@ -38,7 +41,7 @@ public class SelectCategories extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     public Boolean doInBackground(Void... params){
-        this.objectCategorie = this.parseStringToCategorie(this.convertStreamToString(this.openHttpConnection(this.urlString)));
+        this.objectCategories = this.parseStringToCategories(this.convertStreamToString(this.openHttpConnection(this.urlString)));
         return true;
     }
 
@@ -47,13 +50,23 @@ public class SelectCategories extends AsyncTask<Void, Void, Boolean> {
         if(result) {
             String[] colDB = {"_id", "nameCategorie", "imageCategorie"};
             MatrixCursor matrixCursor = new MatrixCursor(colDB);
-            for (Categorie categorie : objectCategorie) {
+            for (Categorie categorie : this.objectCategories) {
                 matrixCursor.addRow(new Object[]{categorie.getIdCategorie(), categorie.getNameCategorie(), categorie.getImageCategorie()});
             }
             String[] arrayNamesCols = {"nameCategorie", "imageCategorie"};
             int[] arrayNamesViews = {R.id.textView_MenuFragment_textOption, R.id.imageView_MenuFragment_imageOption};
             SimpleCursorAdapter adapter = new SimpleCursorAdapter(this.activity, R.layout.option_menu, matrixCursor, arrayNamesCols, arrayNamesViews, 0);
             ListView list = (ListView) this.menuFragment.getView().findViewById(R.id.listView_MenuFragment_list);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    int count;
+                    String nameCategorie = ((TextView)view.findViewById(R.id.textView_MenuFragment_textOption)).getText().toString();
+                    for(count = 0; !SelectCategories.this.objectCategories.get(count).getNameCategorie().equalsIgnoreCase(nameCategorie); count++);
+                    view.setTag(SelectCategories.this.objectCategories.get(count).getIdCategorie());
+                    SelectCategories.this.menuFragment.getActivityListener().change(view, null);
+                }
+            });
             list.setAdapter(adapter);
         }else{
             Toast.makeText(this.activity, "ERROR BASE DE DATOS", Toast.LENGTH_LONG).show();
@@ -72,11 +85,11 @@ public class SelectCategories extends AsyncTask<Void, Void, Boolean> {
         }
     }
 
-    private ArrayList<Categorie> parseStringToCategorie(String data){
+    private ArrayList<Categorie> parseStringToCategories(String data){
         ArrayList<Categorie> objectCategories = new ArrayList<Categorie>();
-        String [] categories = data.split("<br>");
-        for(int count = 0; count < categories.length-1; count++){
-            String [] attributes = categories[count].split("-");
+        String [] categories = data.trim().split("<br>");
+        for(int count = 0; count < categories.length; count++){
+            String [] attributes = categories[count].trim().split("<->");
             Categorie categorie = new Categorie();
             categorie.setIdCategorie(Integer.parseInt(attributes[0]));
             categorie.setNameCategorie(attributes[1]);
@@ -110,9 +123,8 @@ public class SelectCategories extends AsyncTask<Void, Void, Boolean> {
         }
     }
 
-    private int getIntResourceByName(String aString) {
-        String packageName = this.activity.getPackageName();
-        int resId = this.activity.getResources().getIdentifier("joysticks1", "drawable", packageName);
-        return resId;
+    private int getIntResourceByName(String resourceString) {
+        int resourceId = this.activity.getResources().getIdentifier(resourceString, "drawable", this.activity.getPackageName());
+        return resourceId;
     }
 }

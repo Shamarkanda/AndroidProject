@@ -22,7 +22,7 @@ public class Opacity extends AsyncTask<Void, Integer, Boolean> {
     protected Boolean doInBackground(Void... params){
         for(int i = 0; i < 255; i++){
             try{
-                Thread.sleep(0);
+                Thread.sleep(100);
             }catch(InterruptedException e){
                 cancel(true);
                 e.printStackTrace();
@@ -48,6 +48,7 @@ public class Opacity extends AsyncTask<Void, Integer, Boolean> {
         }
         Intent intent = new Intent(this.activity, LoginActivity.class);
         this.activity.startActivity(intent);
+        this.activity.finish();
     }
 
     @Override

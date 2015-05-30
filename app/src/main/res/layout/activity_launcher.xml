@@ -8,10 +8,9 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:src="@drawable/logo_android"
+        android:src="@drawable/meetgamelogo"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

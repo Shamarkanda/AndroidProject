@@ -29,7 +29,7 @@ public class LoginActivity extends Activity implements OnLogin{
 
     @Override
     public void validate(EditText username, EditText password){
-        new SelectPersonalData(this, this.spinner, username, password).execute();
+        new Login(this, this.spinner, username, password).execute();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class LoginActivity extends Activity implements OnLogin{
         if(isEmptyRegisterTexts){
             Toast.makeText(this, "Rellene todos los datos, por favor", Toast.LENGTH_SHORT).show();
         }else{
-            new InsertLogin(this, this.spinner, email, username, password, province, date, genreMan, genreWoman).execute();
+            new InsertPersonalData(this, this.spinner, email, username, password, province, date, genreMan, genreWoman).execute();
         }
     }
 }

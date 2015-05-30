@@ -41,14 +41,15 @@ import java.util.List;
 /**
  * Created by JozuMaster on 05/05/2015.
  */
-public class InsertLogin extends AsyncTask<Void, Void, Boolean> {
+public class InsertPersonalData extends AsyncTask<Void, Void, Boolean> {
+    private final String urlString = "http://meetgame.es/MeetGame/InsertPersonalData.php";
     private Activity activity;
     private EditText email, username, password, date;
     private AutoCompleteTextView province;
     private CheckBox genreMan, genreWoman;
     private ProgressDialog spinner;
 
-    public InsertLogin(Activity activity, ProgressDialog spinner, EditText email, EditText username, EditText password, AutoCompleteTextView province, EditText date, CheckBox genreMan, CheckBox genreWoman){
+    public InsertPersonalData(Activity activity, ProgressDialog spinner, EditText email, EditText username, EditText password, AutoCompleteTextView province, EditText date, CheckBox genreMan, CheckBox genreWoman){
         this.activity = activity;
         this.spinner = spinner;
         this.email = email;
@@ -67,7 +68,7 @@ public class InsertLogin extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     public Boolean doInBackground(Void... params){
-        return this.openHttpConnection("http://meetgame.es/MeetGame/InsertLogin.php");
+        return this.openHttpConnection(this.urlString);
     }
 
     @Override
@@ -116,5 +117,4 @@ public class InsertLogin extends AsyncTask<Void, Void, Boolean> {
         }
         return json.toString();
     }
-
 }

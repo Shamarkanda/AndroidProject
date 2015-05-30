@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/linearLayout_ProfileFragment_groupProfile"
+            android:id="@+id/linearLayout_ProfileFragment_profileGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -20,7 +18,7 @@
                 android:layout_gravity="center_horizontal" />
 
             <TextView
-                android:id="@+id/textView_ProfileFragment_textUser"
+                android:id="@+id/textView_ProfileFragment_usernameText"
                 android:text="NAME USER"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,23 +32,25 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout_ProfileFragment_groupProfile"
+            android:layout_below="@id/linearLayout_ProfileFragment_profileGroup"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="70dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/linearLayout2">
 
             <TextView
-                android:id="@+id/textView_ProfileFragment_textFriends"
-                android:text="FRIENDS"
+                android:id="@+id/textView_ProfileFragment_friendsText"
+                android:text="AMIGOS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/button_ProfileFragment_buttonFriends"
+                android:id="@+id/button_ProfileFragment_friendsButton"
                 android:text="5"
+                android:tag="3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
@@ -59,26 +59,35 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout_ProfileFragment_groupProfile"
+            android:layout_below="@id/linearLayout_ProfileFragment_profileGroup"
             android:layout_alignParentRight="true"
             android:layout_marginTop="20dp"
             android:layout_marginRight="70dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_ProfileFragment_textGames"
-                android:text="VIDEOGAMES"
+                android:id="@+id/textView_ProfileFragment_videogamesText"
+                android:text="VIDEOJUEGOS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/button_ProfileFragment_buttonGames"
+                android:id="@+id/button_ProfileFragment_videogamesButton"
                 android:text="4"
+                android:tag="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
         </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+
+    <Button
+        android:id="@+id/button_ProfileFragment_followButton"
+        android:text="SEGUIR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout_ProfileFragment_profileGroup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp" />
+</RelativeLayout>

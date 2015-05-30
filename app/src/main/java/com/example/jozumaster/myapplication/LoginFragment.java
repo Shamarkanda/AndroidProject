@@ -2,6 +2,8 @@ package com.example.jozumaster.myapplication;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,9 @@ public class LoginFragment extends Fragment {
         this.password = (EditText) rootView.findViewById(R.id.editText_LoginFragment_password);
         Button validate = (Button) rootView.findViewById(R.id.button_LoginFragment_login);
         Button register = (Button) rootView.findViewById(R.id.button_LoginFragment_register);
+        SharedPreferences myPreferences = this.getActivity().getSharedPreferences("MYPREFERENCES", Context.MODE_PRIVATE);
+        this.username.setText(myPreferences.getString("USERNAME", ""));
+        this.password.setText(myPreferences.getString("PASSWORD", ""));
         validate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

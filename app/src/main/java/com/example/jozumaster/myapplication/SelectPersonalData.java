@@ -1,11 +1,13 @@
 package com.example.jozumaster.myapplication;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -15,41 +17,35 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Created by JozuMaster on 17/05/2015.
+ * Created by JozuMaster on 30/05/2015.
  */
-public class SelectPersonalData extends AsyncTask<Void, Void, Boolean> {
-    public final static String KEY_PERSON = "PERSON";
+public class SelectPersonalData extends AsyncTask<Void, Void, Boolean>{
+    private final String urlString = "http://meetgame.es/MeetGame/SelectPersonalData.php";
     private Activity activity;
-    private ProgressDialog spinner;
-    private EditText username, password;
+    private ProfileFragment profileFragment;
+    private int idPersonalData;
     private Person person;
 
-    public SelectPersonalData(Activity activity, ProgressDialog spinner, EditText username, EditText password){
+    public SelectPersonalData(Activity activity, ProfileFragment profileFragment, int idPersonalData){
         this.activity = activity;
-        this.spinner = spinner;
-        this.username = username;
-        this.password = password;
-    }
-
-    @Override
-    public void onPreExecute(){
-        this.spinner.show();
+        this.profileFragment = profileFragment;
+        this.idPersonalData = idPersonalData;
     }
 
     @Override
     public Boolean doInBackground(Void... params){
-        this.person = this.parseStringToPerson(this.convertStreamToString(this.openHttpConnection("http://meetgame.es/MeetGame/SelectPersonalData.php")));
-        if(this.person.getUsername().equalsIgnoreCase(this.username.getText().toString()) && this.person.getPassword().equals(this.password.getText().toString())){
+        this.person = this.parseStringToPerson(this.convertStreamToString(this.openHttpConnection(this.urlString)));
+        if(this.person.getIdPersonalData() == this.idPersonalData){
             return true;
         }else{
             return false;
@@ -58,22 +54,56 @@ public class SelectPersonalData extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     public void onPostExecute(Boolean result){
-        this.spinner.dismiss();
         if(result){
-            Toast.makeText(this.activity, "USUARIO CORRECTO", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this.activity, MenuActivity.class);
-            intent.putExtra(SelectPersonalData.KEY_PERSON, this.person);
-            this.activity.startActivity(intent);
+            View rootView = this.profileFragment.getView();
+            TextView username = (TextView) rootView.findViewById(R.id.textView_ProfileFragment_usernameText);
+            username.setText(this.person.getUsername());
+            Button friendsButton = (Button) rootView.findViewById(R.id.button_ProfileFragment_friendsButton);
+            friendsButton.setText(Integer.toString(this.person.getFriendsNumber()));
+            friendsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SelectPersonalData.this.profileFragment.getActivityListener().change(view, SelectPersonalData.this.profileFragment);
+                }
+            });
+            Button videogamesButton = (Button) rootView.findViewById(R.id.button_ProfileFragment_videogamesButton);
+            videogamesButton.setText(Integer.toString(this.person.getVideogamesNumber()));
+            videogamesButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SelectPersonalData.this.profileFragment.getActivityListener().change(view, SelectPersonalData.this.profileFragment);
+                }
+            });
+            Button followButon = (Button) rootView.findViewById(R.id.button_ProfileFragment_followButton);
+            //if(this.person.is)
+            if(this.idPersonalData == this.activity.getSharedPreferences("MYPREFERENCES", Context.MODE_PRIVATE).getInt("IDPERSONALDATA", 0)){
+                followButon.setVisibility(View.INVISIBLE);
+                followButon.setEnabled(false);
+            }
+            followButon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(((Button) view).getText().toString().equals("SEGUIR")) {
+                        ((OnFollow) SelectPersonalData.this.profileFragment.getActivityListener()).follow(view);
+                    }else{
+                        ((OnFollow) SelectPersonalData.this.profileFragment.getActivityListener()).unFollow(view);
+                    }
+                }
+            });
+            this.activity.getFragmentManager().beginTransaction()
+                    .show(this.profileFragment)
+                    .commit();
         }else{
-            Toast.makeText(this.activity, "USUARIO INCORRECTO", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.activity, "ERROR BASE DE DATOS", Toast.LENGTH_LONG).show();
         }
     }
+
 
     private InputStream openHttpConnection(String urlString){
         HttpClient httpClient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(urlString);
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-        nameValuePairs.add(new BasicNameValuePair("username", this.username.getText().toString()));
+        nameValuePairs.add(new BasicNameValuePair("JSON", this.parseStringToJSON()));
         try{
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -85,12 +115,35 @@ public class SelectPersonalData extends AsyncTask<Void, Void, Boolean> {
     }
 
     private Person parseStringToPerson(String data){
-        String [] attributes = data.split("-");
+        String [] attributes = data.trim().split("<->");
+        Log.v("test", data);
         if(attributes.length > 1) {
-            return new Person(Integer.parseInt(attributes[0]), attributes[1], attributes[2], attributes[3], Integer.parseInt(attributes[4]), attributes[5], attributes[6]);
+            Person person = new Person();
+            person.setIdPersonalData(Integer.parseInt(attributes[0]));
+            person.setEmail(attributes[1]);
+            person.setUsername(attributes[2]);
+            person.setPassword(attributes[3]);
+            person.setProvince(attributes[4]);
+            person.setBirthDate(attributes[5]);
+            person.setGenre(attributes[6]);
+            person.setFriendsNumber(Integer.parseInt(attributes[7]));
+            person.setVideogamesNumber(Integer.parseInt(attributes[8]));
+            return person;
         }else{
             return new Person();
         }
+    }
+
+
+    private String parseStringToJSON(){
+        JSONObject json = new JSONObject();
+        try {
+            json
+                    .accumulate("idPersonalData", this.idPersonalData);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json.toString();
     }
 
     private String convertStreamToString(InputStream inputStream) {
