@@ -75,7 +75,10 @@ public class SelectPersonalData extends AsyncTask<Void, Void, Boolean>{
                 }
             });
             Button followButon = (Button) rootView.findViewById(R.id.button_ProfileFragment_followButton);
-            //if(this.person.is)
+            followButon.setTag(this.person.getIdPersonalData());
+            if(this.person.isFollowed()){
+                followButon.setText("SEGUIDO");
+            }
             if(this.idPersonalData == this.activity.getSharedPreferences("MYPREFERENCES", Context.MODE_PRIVATE).getInt("IDPERSONALDATA", 0)){
                 followButon.setVisibility(View.INVISIBLE);
                 followButon.setEnabled(false);
@@ -84,9 +87,9 @@ public class SelectPersonalData extends AsyncTask<Void, Void, Boolean>{
                 @Override
                 public void onClick(View view) {
                     if(((Button) view).getText().toString().equals("SEGUIR")) {
-                        ((OnFollow) SelectPersonalData.this.profileFragment.getActivityListener()).follow(view);
+                        ((OnFollow) SelectPersonalData.this.profileFragment.getActivityListener()).follow(view, SelectPersonalData.this.profileFragment);
                     }else{
-                        ((OnFollow) SelectPersonalData.this.profileFragment.getActivityListener()).unFollow(view);
+                        ((OnFollow) SelectPersonalData.this.profileFragment.getActivityListener()).unFollow(view, SelectPersonalData.this.profileFragment);
                     }
                 }
             });
@@ -128,6 +131,7 @@ public class SelectPersonalData extends AsyncTask<Void, Void, Boolean>{
             person.setGenre(attributes[6]);
             person.setFriendsNumber(Integer.parseInt(attributes[7]));
             person.setVideogamesNumber(Integer.parseInt(attributes[8]));
+            person.setFollowed(Integer.parseInt(attributes[9]) == 1);
             return person;
         }else{
             return new Person();
@@ -139,7 +143,8 @@ public class SelectPersonalData extends AsyncTask<Void, Void, Boolean>{
         JSONObject json = new JSONObject();
         try {
             json
-                    .accumulate("idPersonalData", this.idPersonalData);
+                    .accumulate("idPersonalData", this.idPersonalData)
+                    .accumulate("myIdPersonalData", this.activity.getSharedPreferences("MYPREFERENCES", Context.MODE_PRIVATE).getInt("IDPERSONALDATA", 0));
         } catch (JSONException e) {
             e.printStackTrace();
         }

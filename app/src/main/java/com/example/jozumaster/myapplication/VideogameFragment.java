@@ -15,9 +15,9 @@ public class VideogameFragment extends Fragment {
 
     private static OnFollow activityListenerVoid = new OnFollow() {
         @Override
-        public void follow(View view) {}
+        public void follow(View view, Fragment fragment) {}
         @Override
-        public void unFollow(View view) {}
+        public void unFollow(View view, Fragment fragment) {}
     };
 
     private OnFollow activityListener = VideogameFragment.activityListenerVoid;

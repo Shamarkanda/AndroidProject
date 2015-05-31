@@ -21,7 +21,7 @@ public class Person implements Serializable{
         this.idPersonalData = 0;
         this.email = "";
         this.username = "";
-        this.password = "";
+        this.password = "A!Sg23P";
         this.province = "";
         this.birthDate = "";
         this.genre = "";

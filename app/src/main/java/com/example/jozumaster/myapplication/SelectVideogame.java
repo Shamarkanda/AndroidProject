@@ -85,9 +85,9 @@ public class SelectVideogame extends AsyncTask<Void, Void, Boolean> {
                 @Override
                 public void onClick(View view) {
                     if (((Button) view).getText().equals("SEGUIR")) {
-                        SelectVideogame.this.videogameFragment.getActivityListener().follow(view);
+                        SelectVideogame.this.videogameFragment.getActivityListener().follow(view, SelectVideogame.this.videogameFragment);
                     } else {
-                        SelectVideogame.this.videogameFragment.getActivityListener().unFollow(view);
+                        SelectVideogame.this.videogameFragment.getActivityListener().unFollow(view, SelectVideogame.this.videogameFragment);
                     }
                 }
             });

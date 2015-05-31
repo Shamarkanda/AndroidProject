@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -112,14 +113,25 @@ public class MenuActivity extends Activity implements OnChange, OnChangeVideogam
     }
 
     @Override
-    public void follow(View view){
-        new InsertPersonalDataVideogames(this, view).execute();
-        ((Button)view).setText("SEGUIDO");
+    public void follow(View view, Fragment fragment){
+        try{
+            ProfileFragment profileFragment = (ProfileFragment) fragment;
+            new InsertPersonalDataPersonalData(this, view).execute();
+        }catch(ClassCastException e) {
+            new InsertPersonalDataVideogames(this, view).execute();
+        }
+        ((Button) view).setText("SEGUIDO");
     }
 
     @Override
-    public void unFollow(View view){
-        new DeletePersonalDataVideogames(this, view).execute();
+    public void unFollow(View view, Fragment fragment){
+        try{
+            ProfileFragment profileFragment = (ProfileFragment) fragment;
+            Log.v("LLEGOOOOOO","");
+            new DeletePersonalDataPersonalData(this, view).execute();
+        }catch(ClassCastException e) {
+            new DeletePersonalDataVideogames(this, view).execute();
+        }
         ((Button)view).setText("SEGUIR");
     }
 }

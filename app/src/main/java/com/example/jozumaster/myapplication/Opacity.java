@@ -22,7 +22,7 @@ public class Opacity extends AsyncTask<Void, Integer, Boolean> {
     protected Boolean doInBackground(Void... params){
         for(int i = 0; i < 255; i++){
             try{
-                Thread.sleep(100);
+                Thread.sleep(10);
             }catch(InterruptedException e){
                 cancel(true);
                 e.printStackTrace();
