@@ -44,10 +44,25 @@ public class RegisterFragment extends DialogFragment {
         this.password = (EditText) rootView.findViewById(R.id.editText_RegisterFragment_password);
         this.province = (AutoCompleteTextView) rootView.findViewById(R.id.autoCompleteTextView_RegisterFragment_provinces);
         this.genreMan = (CheckBox) rootView.findViewById(R.id.checkBox_RegisterFragment_man);
+        this.genreMan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(RegisterFragment.this.genreMan.isChecked()){
+                    RegisterFragment.this.genreWoman.setChecked(false);
+                }
+            }
+        });
         this.genreWoman = (CheckBox) rootView.findViewById(R.id.checkBox_RegisterFragment_woman);
+        this.genreWoman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(RegisterFragment.this.genreWoman.isChecked()){
+                    RegisterFragment.this.genreMan.setChecked(false);
+                }
+            }
+        });
         this.date = (EditText) rootView.findViewById(R.id.editText_RegisterFragment_date);
         this.date.setInputType(InputType.TYPE_NULL);
-        ImageButton register = (ImageButton) rootView.findViewById(R.id.imageButton_RegisterFragment_register);
         this.date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +76,7 @@ public class RegisterFragment extends DialogFragment {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         String date = "";
                         date += day + "/";
-                        date += month + "/";
+                        date += (month+1) + "/";
                         date += year;
                         RegisterFragment.this.date.setText(date);
                     }
@@ -69,27 +84,12 @@ public class RegisterFragment extends DialogFragment {
                 datePickerDialog.show();
             }
         });
+        ImageButton register = (ImageButton) rootView.findViewById(R.id.imageButton_RegisterFragment_register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RegisterFragment.this.activityListener.register(RegisterFragment.this.email, RegisterFragment.this.username, RegisterFragment.this.password, RegisterFragment.this.province,
                         RegisterFragment.this.date, RegisterFragment.this.genreMan, RegisterFragment.this.genreWoman, RegisterFragment.this.isEmptyRegisterTexts());
-            }
-        });
-        this.genreMan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(RegisterFragment.this.genreMan.isChecked()){
-                    RegisterFragment.this.genreWoman.setChecked(false);
-                }
-            }
-        });
-        this.genreWoman.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(RegisterFragment.this.genreWoman.isChecked()){
-                    RegisterFragment.this.genreMan.setChecked(false);
-                }
             }
         });
         return rootView;

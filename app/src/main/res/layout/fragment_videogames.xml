@@ -4,8 +4,9 @@
     android:id="@+id/listView_VideogamesFragment_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp"
-    android:divider="@android:color/holo_red_dark"
-    android:dividerHeight="10dp"
-    android:background="@android:color/white">
+    android:padding="25dp"
+    android:divider="@drawable/botones1"
+    android:dividerHeight="5dp">
+
 </ListView>
+

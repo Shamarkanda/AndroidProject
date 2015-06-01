@@ -3,9 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
-
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,9 +11,11 @@
 
         <ImageButton
             android:id="@+id/imageButton_MenuFragmentStatic_buttonHome"
-            android:src="@android:drawable/ic_dialog_dialer"
+            android:background="@drawable/home"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp" />
 
         <TextView
             android:id="@+id/textView_MenuFragmentStatic_textHome"
@@ -28,11 +28,15 @@
 
     <ImageButton
         android:id="@+id/imageButton_MenuFragmentStatic_buttonMenu"
-        android:src="@android:drawable/ic_menu_sort_by_size"
         android:tag="MENU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/desplegable"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        />
+
 </RelativeLayout>

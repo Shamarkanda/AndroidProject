@@ -3,6 +3,8 @@ package com.example.jozumaster.myapplication;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +29,13 @@ public class MenuFragmentStatic extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_static_menu, container, false);
         ImageButton menu = (ImageButton) rootView.findViewById(R.id.imageButton_MenuFragmentStatic_buttonMenu);
         menu.setOnClickListener(new View.OnClickListener() {
+            long lastClickTime = 0;
             @Override
             public void onClick(View view) {
-                activityListener.change(view, null);
+                if(SystemClock.elapsedRealtime() - lastClickTime > 1000) {
+                    lastClickTime = SystemClock.elapsedRealtime();
+                    activityListener.change(view, null);
+                }
             }
         });
         return rootView;

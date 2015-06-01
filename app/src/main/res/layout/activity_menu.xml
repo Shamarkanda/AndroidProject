@@ -5,10 +5,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@android:color/holo_red_dark"
-    tools:context=".MenuActivity">
-
+    android:padding="10dp"
+    tools:context=".MenuActivity"
+    android:background="@drawable/fondo1">
     <FrameLayout
         android:id="@+id/frameLayout_MenuActivity_containerUpper"
         android:layout_width="match_parent"
@@ -22,10 +21,9 @@
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_static_menu" />
     </FrameLayout>
-
     <FrameLayout
         android:id="@+id/frameLayout_MenuActivity_containerLower"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="match_parent">
+    </FrameLayout>
 </LinearLayout>

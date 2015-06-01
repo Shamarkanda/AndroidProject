@@ -1,6 +1,7 @@
 package com.example.jozumaster.myapplication;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -76,9 +77,7 @@ public class InsertPersonalData extends AsyncTask<Void, Void, Boolean> {
         this.spinner.dismiss();
         if(result){
             Toast.makeText(this.activity, "Registro realizado con exito", Toast.LENGTH_SHORT).show();
-            this.activity.getFragmentManager().beginTransaction()
-                    .replace(R.id.frameLayout_LoginActivity_container, new LoginFragment())
-                    .commit();
+            ((DialogFragment)this.activity.getFragmentManager().findFragmentByTag("REGISTERFRAGMENT")).dismiss();
         }else{
             Toast.makeText(this.activity, "Ha ocurrido un error, intentelo de nuevo", Toast.LENGTH_SHORT).show();
         }

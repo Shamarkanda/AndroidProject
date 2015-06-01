@@ -25,6 +25,7 @@ import java.text.Normalizer;
  * Created by JozuMaster on 10/05/2015.
  */
 public class SelectProvinces extends AsyncTask<Void, Void, Boolean> {
+    private final String urlString = "http://meetgame.es/MeetGame/SelectProvinces.php";
     private Activity activity;
     private RegisterFragment registerFragment;
     private String [] result;
@@ -39,7 +40,7 @@ public class SelectProvinces extends AsyncTask<Void, Void, Boolean> {
     @Override
     public void onPreExecute(){
         this.httpClient = new DefaultHttpClient();
-        this.httpPost = new HttpPost("http://meetgame.es/MeetGame/SelectProvinces.php");
+        this.httpPost = new HttpPost(this.urlString);
     }
 
     @Override

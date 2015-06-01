@@ -35,9 +35,7 @@ public class LoginActivity extends Activity implements OnLogin{
     @Override
     public void newRegister(){
         RegisterFragment registerFragment = new RegisterFragment();
-        this.getFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout_LoginActivity_container, registerFragment)
-                .commit();
+        registerFragment.show(this.getFragmentManager(), "REGISTERFRAGMENT");
         new SelectProvinces(this, registerFragment).execute();
     }
 

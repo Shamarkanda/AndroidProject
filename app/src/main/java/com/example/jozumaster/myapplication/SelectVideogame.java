@@ -71,7 +71,11 @@ public class SelectVideogame extends AsyncTask<Void, Void, Boolean> {
             TextView genre = (TextView) rootView.findViewById(R.id.textView_VideogameFragment_genre);
             genre.setText(this.videogame.getGenre());
             TextView players = (TextView) rootView.findViewById(R.id.textView_VideogameFragment_players);
-            players.setText(Integer.toString(this.videogame.getPlayers()));
+            if(this.videogame.getPlayers() == 0){
+                players.setText("Online");
+            }else{
+                players.setText(Integer.toString(this.videogame.getPlayers()));
+            }
             TextView pegi = (TextView) rootView.findViewById(R.id.textView_VideogameFragment_pegi);
             pegi.setText(Integer.toString(this.videogame.getPegi()));
             TextView releaseDate = (TextView) rootView.findViewById(R.id.textView_VideogameFragment_releaseDate);

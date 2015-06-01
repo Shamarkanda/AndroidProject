@@ -5,18 +5,19 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp">
+    android:padding="15dp">
 
     <ImageView
         android:id="@+id/imageView_MenuFragment_imageOption"
         android:src="@drawable/black406"
-        android:layout_width="32dp"
-        android:layout_height="32dp" />
+        android:layout_width="48dp"
+        android:layout_height="48dp" />
     <TextView
         android:id="@+id/textView_MenuFragment_textOption"
         android:text="CONFIGURACION"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 </LinearLayout>

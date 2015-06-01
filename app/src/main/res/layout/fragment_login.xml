@@ -5,6 +5,18 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <ImageView
+        android:id="@+id/imageView_ProfileFragment_image"
+        android:src="@drawable/meetgamelogin"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+
+
+        />
+
     <LinearLayout
         android:id="@+id/linearLayout_LoginFragment_texts"
         android:layout_width="wrap_content"
@@ -12,14 +24,9 @@
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
-        <EditText
-            android:id="@+id/editText_LoginFragment_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:hint="Usuario"
-            android:textColorHint="@android:color/holo_blue_dark"/>
+
+
+
 
         <EditText
             android:id="@+id/editText_LoginFragment_password"
@@ -32,60 +39,55 @@
             android:textColorHint="@android:color/holo_blue_dark"/>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/linearLayout_LoginFragment_texts"
         android:layout_alignLeft="@id/linearLayout_LoginFragment_texts"
-        android:id="@+id/linearLayout_LoginFragment_buttons">
+        android:layout_alignRight="@id/linearLayout_LoginFragment_texts"
+        android:id="@+id/relativeLayout_LoginFragment_buttons">
         <Button
             android:id="@+id/button_LoginFragment_login"
+            android:text="Entrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:text="Entrar"/>
+            android:background="@drawable/botones1"
+            android:layout_marginTop="20dp"/>
 
         <Button
             android:id="@+id/button_LoginFragment_clean"
+            android:text="Limpiar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Limpiar"/>
-    </LinearLayout>
+            android:background="@drawable/botones1"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Bienvenido"
-        android:id="@+id/textView"
-        android:layout_above="@id/linearLayout_LoginFragment_texts"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Bienvenido"
-        android:id="@+id/textView2"
-        android:layout_above="@id/textView"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Bienvenido"
-        android:id="@+id/textView3"
-        android:layout_above="@id/textView2"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button_LoginFragment_register"
         android:text="Registrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout_LoginFragment_buttons"
-        android:layout_centerHorizontal="true" />
+        android:background="@drawable/botones1"
+        android:width="120dp"
+        android:layout_below="@+id/relativeLayout_LoginFragment_buttons"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <EditText
+        android:id="@+id/editText_LoginFragment_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:hint="Usuario"
+        android:textColorHint="@android:color/holo_blue_dark"
+        android:layout_above="@+id/linearLayout_LoginFragment_texts"
+        android:layout_alignLeft="@+id/linearLayout_LoginFragment_texts"
+        android:layout_alignStart="@+id/linearLayout_LoginFragment_texts" />
 
 </RelativeLayout>
